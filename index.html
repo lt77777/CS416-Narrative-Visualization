@@ -5,23 +5,28 @@
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> circle {fill: lightblue; stroke: black;} </style>
 <style>
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers items horizontally */
+        margin-top: 20px; /* Adjust margin as needed */
+    }
+
     .button {
-        display: block;
-        width: 150px;
-        margin: 10px ; 
+        margin-bottom: 10px; /* Adjust spacing between buttons */
         padding: 10px 20px;
-        font-size: 12px;
+        font-size: 16px;
         cursor: pointer;
     }
 </style>
 <body onload='init()'>
-        <button class="button" onclick="plotScene1()">Average Highway MPG versus Average City MPG Sized by Engine Cylinders</button>
-        <button class="button" onclick="plotScene2()">Average Highway MPG versus Average City MPG Sized by Engine Cylinders</button>
-        <button class="button" onclick="plotScene3()">Average Highway MPG versus Average City MPG</button>
-        <button class="button" onclick="plotScene4()">Average Highway MPG versus Average City MPG</button>
+        <button class="button" onclick="plotScene1()">Scene 1: Average Highway MPG versus Average City MPG Sized by Engine Cylinders</button>
+        <button class="button" onclick="plotScene2()">Scene 2: Average Highway MPG versus Average City MPG Sized by Engine Cylinders</button>
+        <button class="button" onclick="plotScene3()">Scene 3: Average Highway MPG versus Average City MPG</button>
+        <button class="button" onclick="plotScene4()">Scene 4: Average Highway MPG versus Average City MPG</button>
     </div>
 
-<h2>Click one of the buttons to display a plot with or without the size of the circles representing the number of cylinders in the engine</h2>
+<h3>Click one of the buttons to display a plot with or without the size of the circles representing the number of cylinders in the engine</h3>
 
 
 
@@ -37,7 +42,12 @@ async function init() {
     }
     
 async function plotScene1(){
+
     d3.select("svg").selectAll("*").remove();
+    d3.select("body")
+        .append("p")
+        .text("Here we can see how the increased number of cylinders in the engine correlates with the average city and highway MPG. More cylinder correlate with lower average city and highway MPG.");
+    
     const data = await d3.csv("https://flunky.github.io/cars2017.csv");
     d3.select("svg")
         .append("text")
@@ -114,9 +124,11 @@ async function plotScene1(){
 async function plotScene2() {
     // hide old plot
     d3.select("svg").selectAll("*").remove();
-
+    d3.select("body").selectAll("p").remove();
     const data = await d3.csv("https://flunky.github.io/cars2017.csv");
-
+    d3.select("body")
+        .append("p")
+        .text("Similarly, here we can see how the increased number of cylinders in the engine correlates with the average city and highway MPG. More cylinder correlate with lower average city and highway MPG. We start to see that the shift in the average city MPG is more drastic than the shift in the average highway MPG with respect to the number of cylinders in the engine.");
     d3.select("svg")
         .append("text")
         .attr("transform", "translate(150, 290)")
@@ -195,7 +207,11 @@ async function plotScene2() {
 
 async function plotScene3(){
     d3.select("svg").selectAll("*").remove();
+    d3.select("body").selectAll("p").remove();
     const data = await d3.csv("https://flunky.github.io/cars2017.csv");
+    d3.select("body")
+        .append("p")
+        .text("Removing the sizing of the dots, we can see the average city and highway MPG for each car. We can see that there is a direct correlation between the average city and highway MPG for each car.");
     d3.select("svg")
         .append("text")
         .attr("transform", "translate(150, 290)")
@@ -270,7 +286,11 @@ async function plotScene3(){
 
 async function plotScene4(){
     d3.select("svg").selectAll("*").remove();
+    d3.select("body").selectAll("p").remove();
     const data = await d3.csv("https://flunky.github.io/cars2017.csv");
+    d3.select("body")
+        .append("p")
+        .text("Flipping the graph, we can see with this log scale, the average city and highway MPG for each car. We can see clearly that the average highway MPG is higher than the average city MPG for each car.");
 
     d3.select("svg")
         .append("text")
