@@ -26,7 +26,7 @@
         <button class="button" onclick="plotScene4()">Scene 4: Average Highway MPG versus Average City MPG</button>
     </div>
 
-<h3>Click one of the buttons to display a plot with or without the size of the circles representing the number of cylinders in the engine</h3>
+<h3>Click the buttons above to display each scene</h3>
 
 
 
@@ -44,6 +44,7 @@ async function init() {
 async function plotScene1(){
 
     d3.select("svg").selectAll("*").remove();
+    d3.select("body").selectAll("p").remove();
     d3.select("body")
         .append("p")
         .text("Here we can see how the increased number of cylinders in the engine correlates with the average city and highway MPG. More cylinder correlate with lower average city and highway MPG.");
