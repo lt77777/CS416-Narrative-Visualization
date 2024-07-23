@@ -291,7 +291,7 @@ async function plotScene4(){
     const data = await d3.csv("https://flunky.github.io/cars2017.csv");
     d3.select("body")
         .append("p")
-        .text("Flipping the graph, we can see with this log scale, the average city and highway MPG for each car. We can see clearly that the average highway MPG is higher than the average city MPG for each car.");
+        .text("Flipping the graph, we can see with this log scale, the average city and highway MPG for each car. We can see clearly that the average highway MPG is higher than the average city MPG for each car. You can now hover over the dots to see the average city and highway MPG as well as the number of cylinders in the engine for each car.");
 
     d3.select("svg")
         .append("text")
@@ -364,6 +364,28 @@ async function plotScene4(){
         .attr("text-anchor", "middle")
         .call(x_axis);
 
+var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("background", "White")
+    .style("boarder", "black")
+    .text("a simple tooltip");
+
+d3.select("svg")
+    .selectAll("circle")
+    .on("mouseover", function(d) {
+        tooltip.html("Engine Cylinders: " + d.EngineCylinders + "<br>" + "Average City MPG: " + d.AverageCityMPG + "<br>" + "Average Highway MPG: " + d.AverageHighwayMPG)
+            .style("visibility", "visible");
+    })
+    .on("mousemove", function() {
+        tooltip.style("top", (d3.event.pageY - 10) + "px")
+            .style("left", (d3.event.pageX + 10) + "px");
+    })
+    .on("mouseout", function() {
+        tooltip.style("visibility", "hidden");
+    });
 }
 
 </script>
