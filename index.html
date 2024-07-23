@@ -315,7 +315,7 @@ async function plotScene4(){
     const data = await d3.csv("https://flunky.github.io/cars2017.csv");
     d3.select("body")
         .append("p")
-        .text("Flipping the graph, we can see with this log scale, the average city and highway MPG for each car. We can see clearly that the average highway MPG is higher than the average city MPG for each car. You can now hover over the dots to see the average city and highway MPG as well as the number of cylinders in the engine for each car. The outliers are show in red.");
+        .text("Flipping the graph, we can see with this log scale, the average city and highway MPG for each car. We can see clearly that the average highway MPG is higher than the average city MPG for each car. You can now hover over the dots to see the average city and highway MPG as well as the number of cylinders in the engine for each car. The outliers are show in red. We can note that the outliers all have 0 cylinder enginers.");
 
     d3.select("svg")
         .append("text")
